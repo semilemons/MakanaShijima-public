@@ -26,8 +26,6 @@ const ArticlePage = ({ data }) => {
 
     const createdAt = contentful_article ? contentful_article.createdAt : '';
 
-    
-  console.log(data)
 
   return (
     <Layout>
