@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://semilemons.github.io/ShijimaMakana-Publ/sitemap.xml
-Host: https://semilemons.github.io
