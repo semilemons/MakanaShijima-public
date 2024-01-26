@@ -13,7 +13,7 @@
     "build": "gatsby build --prefix-paths",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "deploy-dev": "gatsby build --prefix-paths && gh-pages -d public",
+    "deploy_": "gatsby build --prefix-paths && gh-pages -d public",
 
       "deploy": "gatsby build --prefix-paths && gh-pages -d public --repo https://x-access-token:${GITHUB_TOKEN}@github.com/semilemons/ShijimaMakana-Publish.git"
 

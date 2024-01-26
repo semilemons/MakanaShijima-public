@@ -7,6 +7,8 @@ require('dotenv').config();
 
 
 module.exports = {
+  pathPrefix: "/ShijimaMakana-Publish",
+
   siteMetadata: {
     title: `shijima-makana-publish`,
     description: `shijima-makana-publish`,
