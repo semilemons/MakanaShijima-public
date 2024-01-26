@@ -1,4 +1,4 @@
-name: Gatsby Build manually
+name: Gatsby Build Manually
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ jobs:
       env:
         G_TAG: ${{ secrets.G_TAG }}
         OUTPUT_DIR: ${{ secrets.OUTPUT_DIR }}
-        
+
     - name: Checkout code
       uses: actions/checkout@v2
 
