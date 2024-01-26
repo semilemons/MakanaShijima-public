@@ -17,9 +17,6 @@ module.exports = {
 
 
   plugins: [
-
-
-  `gatsby-plugin-output`,
   
   {
     resolve: `gatsby-plugin-canonical-urls`,// 追加
