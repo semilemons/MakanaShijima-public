@@ -20,6 +20,12 @@ jobs:
       with:
         node-version: 20.3.1
 
+    - name: Set Git User Identity
+      run: |
+        git config --global user.email "mr.semilemons@gmail.com"
+        git config --global user.name "semilemons"
+
+
     - name: Install dependencies
       run: npm install
 
