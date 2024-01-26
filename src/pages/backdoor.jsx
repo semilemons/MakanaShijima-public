@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import Layout from '../components/layout';
 
 export const query = graphql`
   query {
@@ -12,7 +13,7 @@ export const query = graphql`
 `
 
 const AllPathsPage = ({ data }) => (
-  <div>
+  <Layout>
     <h1>Welcome to back door!</h1>
     <ul>
       {data.allSitePage.nodes.map((node, index) => (
@@ -21,7 +22,7 @@ const AllPathsPage = ({ data }) => (
         </li>
       ))}
     </ul>
-  </div>
+  </Layout>
 )
 
 
