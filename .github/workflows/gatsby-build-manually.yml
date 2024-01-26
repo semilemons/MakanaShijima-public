@@ -1,4 +1,4 @@
-name: Gatsby Build Manually
+name: Gatsby Build and Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -6,12 +6,7 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    env:  # `env` セクションは `steps` セクションの内部に配置する必要があります
-      G_TAG: ${{ secrets.G_TAG }}
-      CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-      CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+    environment: production
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -19,16 +14,23 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 20.3.1
+        node-version: '20.3.1'
 
     - name: Set Git User Identity
       run: |
         git config --global user.email "mr.semilemons@gmail.com"
         git config --global user.name "semilemons"
 
-
     - name: Install dependencies
       run: npm install
 
     - name: Build Gatsby App
+      run: npm run build
+
+    - name: Deploy to GitHub Pages
       run: npm run deploy
+      env:
+        G_TAG: ${{ secrets.G_TAG }}
+        CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+        CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
