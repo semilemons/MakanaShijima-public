@@ -2,13 +2,12 @@
 import Layout from '../components/layout';
 import React from 'react';
 
-import Test from '../components/text';
-
+import FetchLatestMdOne from '../components/fetchLatestMdOne';
 
 const IndexPage = () => {
   return (
     <Layout>
-      <Test />
+      <FetchLatestMdOne />
     </Layout>
   );
 }
