@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 
+const baseApiUrl = `https://api.github.com/repos/semilemons/ShijimaMakana-Publish/contents/markdown-pages`;
+
 const FetchLatestMdOne = () => {
   const [fileData, setFileData] = useState(null);
 
@@ -27,20 +29,29 @@ const FetchLatestMdOne = () => {
     return allMdFiles;
   };
 
-  // コンポーネントのマウント時にファイルを取得
   useEffect(() => {
-    const baseApiUrl = `https://api.github.com/repos/semilemons/ShijimaMakana-Publish/contents/markdown-pages`;
+    const cachedFile = localStorage.getItem('cachedFile');
+
     fetchFiles(baseApiUrl)
       .then(mdFiles => {
         if (mdFiles.length === 0) {
           throw new Error('Markdownファイルが見つかりません。');
         }
-        // 取得したファイルの中から最新のファイルを選択
         const latestFile = mdFiles.reduce((a, b) => (a.name > b.name ? a : b));
-        return axios.get(latestFile.download_url);
-      })
-      .then(response => {
-        setFileData(response.data); // ファイルの内容をセット
+
+        if (cachedFile && JSON.parse(cachedFile).name === latestFile.name) {
+          // キャッシュされたファイルを使用
+          setFileData(JSON.parse(cachedFile).data);
+          console.log('Data is from the cache');
+        } else {
+          // 新しいファイルを取得してキャッシュを更新
+          return axios.get(latestFile.download_url).then(response => {
+            const fileData = response.data;
+            setFileData(fileData);
+            localStorage.setItem('cachedFile', JSON.stringify({ name: latestFile.name, data: fileData }));
+            console.log('Data is from Server.')
+          });
+        }
       })
       .catch(error => {
         console.error(error);
