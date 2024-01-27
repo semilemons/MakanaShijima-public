@@ -51,10 +51,9 @@ const FetchLatestMdOne = () => {
   return (
     <div>
       {fileData ? (
-        // <pre></pre>
         <ReactMarkdown>{fileData}</ReactMarkdown>
       ) : (
-        <p>データを読み込んでいます...</p> // ローディングメッセージ
+        <p>データを読み込んでいます...</p> 
       )}
     </div>
   );
