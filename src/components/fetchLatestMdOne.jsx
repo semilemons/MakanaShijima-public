@@ -41,14 +41,14 @@ const FetchLatestMdOne = () => {
 
         if (cachedFile && JSON.parse(cachedFile).name === latestFile.name) {
           // キャッシュされたファイルを使用
-          setFileData(JSON.parse(cachedFile).data);
+          setFileData(JSON.parse(cachedFile));
           console.log('Data is from the cache');
         } else {
           // 新しいファイルを取得してキャッシュを更新
           return axios.get(latestFile.download_url).then(response => {
-            const fileData = response.data;
+            const fileData = response;
             setFileData(fileData);
-            localStorage.setItem('cachedFile', JSON.stringify({ name: latestFile.name, data: fileData }));
+            localStorage.setItem('cachedFile', JSON.stringify({ name: latestFile.name, data: fileData.data }));
             console.log('Data is from Server.')
           });
         }
@@ -61,8 +61,12 @@ const FetchLatestMdOne = () => {
 
   return (
     <div>
+      
       {fileData ? (
-        <ReactMarkdown>{fileData}</ReactMarkdown>
+        <div>
+          <p style={{fontSize: '0.8rem', fontWeight: 'thin', fontStyle: 'italic'}}>{fileData.name}</p>
+          <div style={{fontSize: '1rem'}}><ReactMarkdown>{fileData.data}</ReactMarkdown></div>
+        </div>
       ) : (
         <p>データを読み込んでいます...</p> 
       )}
