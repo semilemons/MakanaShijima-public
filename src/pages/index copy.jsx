@@ -1,14 +1,9 @@
-
-import Layout from '../components/layout';
 import React from 'react';
-
-import Test from '../components/text';
-
+import Layout from '../components/layout';
 
 const IndexPage = () => {
   return (
     <Layout>
-      <Test />
     </Layout>
   );
 }

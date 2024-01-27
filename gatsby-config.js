@@ -84,6 +84,17 @@ module.exports = {
   },
 
   {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      name: 'markdown-pages', // 名前を適切に設定してください
+      path: `./markdown-pages`, // Markdownファイルのディレクトリパス
+    },
+  },
+
+
+
+
+  {
     resolve: 'gatsby-source-contentful',
     options: {
       spaceId: process.env.CONTENTFUL_SPACE_ID,

@@ -14,14 +14,10 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "deploy_": "gatsby build --prefix-paths && gh-pages -d public",
-
-      "deploy": "gatsby build --prefix-paths && gh-pages -d public --repo https://x-access-token:${GITHUB_TOKEN}@github.com/semilemons/ShijimaMakana-Publish.git"
-
-    
-
-
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public --repo https://x-access-token:${GITHUB_TOKEN}@github.com/semilemons/ShijimaMakana-Publish.git"
   },
   "dependencies": {
+    "axios": "^1.6.7",
     "bootstrap": "^5.3.2",
     "dotenv": "^16.4.1",
     "gatsby": "^5.13.1",
